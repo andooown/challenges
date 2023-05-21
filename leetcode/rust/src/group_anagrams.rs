@@ -6,8 +6,8 @@ impl Solution {
     pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
         strs.iter()
             .fold(
-                |mut acc: HashMap<[i32; 26], Vec<String>>, str| {
                 HashMap::new(),
+                |mut acc: HashMap<[u8; 26], Vec<String>>, str| {
                     acc.entry(Solution::calc_histogram(str))
                         .or_insert(vec![])
                         .push(str.to_string());
@@ -19,7 +19,7 @@ impl Solution {
             .collect()
     }
 
-    fn calc_histogram(str: &str) -> [i32; 26] {
+    fn calc_histogram(str: &str) -> [u8; 26] {
         let mut hist = [0; 26];
         for b in str.bytes() {
             hist[b as usize - 97] += 1;
