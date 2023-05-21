@@ -1,6 +1,7 @@
 mod contains_duplicate;
 mod group_anagrams;
 mod longest_consecutive_sequence;
+mod min_stack;
 mod product_of_array_except_self;
 mod top_k_frequent_elements;
 mod two_sum;
