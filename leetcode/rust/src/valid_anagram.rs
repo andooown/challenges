@@ -1,6 +1,6 @@
-use std::collections::HashMap;
+use super::Solution;
 
-struct Solution {}
+use std::collections::HashMap;
 
 impl Solution {
     pub fn is_anagram(s: String, t: String) -> bool {
