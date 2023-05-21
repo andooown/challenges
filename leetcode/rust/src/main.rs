@@ -1,4 +1,5 @@
 mod contains_duplicate;
+mod evaluate_reverse_polish_notation;
 mod group_anagrams;
 mod longest_consecutive_sequence;
 mod min_stack;
