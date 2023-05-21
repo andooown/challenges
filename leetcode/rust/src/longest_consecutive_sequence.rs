@@ -8,7 +8,7 @@ impl Solution {
             return nums.len() as i32;
         }
 
-        let mut ns = nums.clone();
+        let mut ns = nums;
         ns.sort_unstable();
         ns.dedup();
 
