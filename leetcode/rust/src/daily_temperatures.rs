@@ -1,20 +1,22 @@
 use super::Solution;
 
-use std::collections::HashMap;
-
 impl Solution {
     pub fn daily_temperatures(temperatures: Vec<i32>) -> Vec<i32> {
-        let mut memo = HashMap::new();
-        memo.entry(temperatures.last().unwrap())
-            .or_insert(temperatures.len() - 1);
-
         let mut result = vec![0; temperatures.len()];
-        for (i, temp) in temperatures.iter().enumerate().rev() {
-            if let Some(j) = (*temp + 1..=100).filter_map(|t| memo.get(&t)).min() {
-                result[i] = (j - i) as i32;
+
+        let mut stack = vec![(temperatures.len() - 1, *temperatures.last().unwrap())];
+        for (i, &temp) in temperatures.iter().enumerate().rev().skip(1) {
+            while let Some(&(_, t)) = stack.last() {
+                if t > temp {
+                    break;
+                }
+                stack.pop();
             }
 
-            memo.insert(temp, i);
+            if let Some(&(j, _)) = stack.last() {
+                result[i] = (j - i) as i32;
+            }
+            stack.push((i, temp));
         }
 
         result
