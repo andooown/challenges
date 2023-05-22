@@ -1,101 +1,35 @@
 use super::Solution;
 
-#[derive(Debug)]
-struct Match {
-    time: i32,
-    index: usize,
-    new_pos: i32,
-    new_speed: i32,
-}
+use std::cmp::Ordering;
 
 impl Solution {
     pub fn car_fleet(target: i32, position: Vec<i32>, speed: Vec<i32>) -> i32 {
-        let mut stack: Vec<_> = position.into_iter().zip(speed.into_iter()).collect();
-        stack.sort_unstable_by(|&(pos1, _), (pos2, _)| pos1.cmp(pos2));
-        // stack.push((target, 0));
+        let cars = Solution::build_cars(position, speed);
 
-        println!("Start target = {}, stack = {:?}", target, stack);
+        let mut stack = vec![];
+        for (pos, speed) in cars {
+            let time = (target - pos) as f32 / speed as f32;
 
-        let mut result = 0;
-        while let Some(m) = Solution::find_nearest_match(target, &stack) {
-            let before = format!("{:?}", stack);
-
-            stack.remove(m.index);
-            stack.remove(m.index);
-            stack.push((m.new_pos, m.new_speed));
-            stack.sort_unstable_by(|&(pos1, _), (pos2, _)| pos1.cmp(pos2));
-
-            println!(
-                "  result = {}, m = {:?}, {} -> {:?}",
-                result, m, before, stack
-            );
-
-            while let Some(&(top_pos, _)) = stack.last() {
-                if top_pos < target {
+            while let Some(t) = stack.last() {
+                if time.partial_cmp(t) == Some(Ordering::Less) {
                     break;
                 }
 
                 stack.pop();
-                result += 1;
-
-                println!("    result = {}, m = {:?}, stack = {:?}", result, m, stack);
             }
 
-            // stack.push((target, 0));
-            // if let Some(m2) = Solution::find_nearest_match(target, &stack) {
-            //     if m2.new_pos == target && m2.new_speed == 0 {
-            //         stack.pop();
-            //         result += 1;
-            //
-            //         println!(
-            //             "    result = {}, m2 = {:?}, stack = {:?}",
-            //             result,
-            //             m2,
-            //             stack.iter().rev().skip(1).rev().collect::<Vec<_>>()
-            //         );
-            //     }
-            // }
-            // stack.pop();
+            stack.push(time);
         }
 
-        result + stack.len() as i32
+        stack.len() as i32
     }
 
-    fn find_nearest_match(target: i32, stack: &Vec<(i32, i32)>) -> Option<Match> {
-        if stack.len() < 2 {
-            return None;
-        }
+    #[inline]
+    fn build_cars(position: Vec<i32>, speed: Vec<i32>) -> Vec<(i32, i32)> {
+        let mut cars: Vec<_> = position.into_iter().zip(speed.into_iter()).collect();
+        cars.sort_unstable_by(|&(pos1, _), (pos2, _)| pos1.cmp(pos2));
 
-        let mut nearest: Option<Match> = None;
-        for i in 0..stack.len() - 1 {
-            let (cur_pos, cur_speed) = stack[i];
-            let (next_pos, next_speed) = stack[i + 1];
-
-            if cur_speed <= next_speed {
-                continue;
-            }
-
-            let t = ((next_pos as f32 - cur_pos as f32) / (cur_speed as f32 - next_speed as f32))
-                .ceil() as i32;
-            let pos = next_pos + next_speed * t;
-            if pos > target {
-                continue;
-            }
-
-            let mat = Match {
-                time: t,
-                index: i,
-                new_pos: pos,
-                new_speed: next_speed,
-            };
-            match nearest {
-                Some(n) if t < n.time => nearest = Some(mat),
-                Some(_) => (),
-                None => nearest = Some(mat),
-            };
-        }
-
-        nearest
+        cars
     }
 }
 
