@@ -1,6 +1,5 @@
 use super::Solution;
 
-#[derive(Clone)]
 enum Parentheses {
     Open,
     Close,
@@ -9,38 +8,36 @@ enum Parentheses {
 impl Solution {
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
         let mut result = vec![];
-        Solution::generate(&mut result, n, vec![], 0, 0);
+        Solution::generate(&mut result, n, &mut vec![], 0, 0);
 
         result
     }
 
-    fn generate(v: &mut Vec<String>, n: i32, current: Vec<Parentheses>, opened: i32, closed: i32) {
+    fn generate(
+        v: &mut Vec<String>,
+        n: i32,
+        current: &mut Vec<Parentheses>,
+        opened: i32,
+        closed: i32,
+    ) {
         if opened + closed == 2 * n {
             v.push(Solution::build_string(current));
             return;
         }
 
         if opened < n {
-            Solution::generate(
-                v,
-                n,
-                [&current[..], &vec![Parentheses::Open]].concat(),
-                opened + 1,
-                closed,
-            );
+            current.push(Parentheses::Open);
+            Solution::generate(v, n, current, opened + 1, closed);
+            current.pop();
         }
         if closed < n && closed < opened {
-            Solution::generate(
-                v,
-                n,
-                [&current[..], &vec![Parentheses::Close]].concat(),
-                opened,
-                closed + 1,
-            );
+            current.push(Parentheses::Close);
+            Solution::generate(v, n, current, opened, closed + 1);
+            current.pop();
         }
     }
 
-    fn build_string(v: Vec<Parentheses>) -> String {
+    fn build_string(v: &Vec<Parentheses>) -> String {
         v.iter()
             .map(|p| match p {
                 Parentheses::Open => "(".to_string(),
