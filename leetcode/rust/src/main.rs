@@ -1,3 +1,4 @@
+mod car_fleet;
 mod contains_duplicate;
 mod daily_temperatures;
 mod evaluate_reverse_polish_notation;
