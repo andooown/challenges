@@ -1,10 +1,5 @@
 use super::Solution;
 
-enum Parentheses {
-    Open,
-    Close,
-}
-
 impl Solution {
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
         let mut result = vec![];
@@ -13,38 +8,22 @@ impl Solution {
         result
     }
 
-    fn generate(
-        v: &mut Vec<String>,
-        n: i32,
-        current: &mut Vec<Parentheses>,
-        opened: i32,
-        closed: i32,
-    ) {
+    fn generate(v: &mut Vec<String>, n: i32, current: &mut Vec<String>, opened: i32, closed: i32) {
         if opened + closed == 2 * n {
-            v.push(Solution::build_string(current));
+            v.push(current.concat());
             return;
         }
 
         if opened < n {
-            current.push(Parentheses::Open);
+            current.push("(".to_string());
             Solution::generate(v, n, current, opened + 1, closed);
             current.pop();
         }
         if closed < n && closed < opened {
-            current.push(Parentheses::Close);
+            current.push(")".to_string());
             Solution::generate(v, n, current, opened, closed + 1);
             current.pop();
         }
-    }
-
-    fn build_string(v: &Vec<Parentheses>) -> String {
-        v.iter()
-            .map(|p| match p {
-                Parentheses::Open => "(".to_string(),
-                Parentheses::Close => ")".to_string(),
-            })
-            .collect::<Vec<String>>()
-            .concat()
     }
 }
 
