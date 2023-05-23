@@ -4,6 +4,7 @@ mod daily_temperatures;
 mod evaluate_reverse_polish_notation;
 mod generate_parentheses;
 mod group_anagrams;
+mod largest_rectangle_in_histogram;
 mod longest_consecutive_sequence;
 mod min_stack;
 mod product_of_array_except_self;
