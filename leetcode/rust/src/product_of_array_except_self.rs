@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 impl Solution {
     pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
@@ -24,7 +24,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn product_except_self() {

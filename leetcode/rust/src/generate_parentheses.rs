@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 impl Solution {
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
@@ -29,7 +29,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn generate_parenthesis() {

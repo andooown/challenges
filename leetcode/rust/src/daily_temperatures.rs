@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 impl Solution {
     pub fn daily_temperatures(temperatures: Vec<i32>) -> Vec<i32> {
@@ -25,7 +25,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn daily_temperatures() {

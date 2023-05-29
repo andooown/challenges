@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 impl Solution {
     pub fn eval_rpn(tokens: Vec<String>) -> i32 {
@@ -28,7 +28,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn eval_rpn() {

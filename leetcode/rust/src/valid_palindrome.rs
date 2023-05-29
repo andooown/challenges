@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 impl Solution {
     pub fn is_palindrome(s: String) -> bool {
@@ -17,7 +17,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn is_palindrome() {

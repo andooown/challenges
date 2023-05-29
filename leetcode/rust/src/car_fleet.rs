@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 use std::cmp::Ordering;
 
@@ -35,7 +35,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn car_fleet() {

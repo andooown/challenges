@@ -19,6 +19,4 @@ mod valid_palindrome;
 mod valid_parentheses;
 mod valid_sudoku;
 
-pub struct Solution;
-
 fn main() {}

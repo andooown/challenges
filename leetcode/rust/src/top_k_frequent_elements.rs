@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 use std::collections::HashMap;
 
@@ -34,7 +34,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
     use std::collections::HashSet;
 
     #[test]

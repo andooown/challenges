@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 use std::cmp;
 
@@ -34,7 +34,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn longest_consecutive() {

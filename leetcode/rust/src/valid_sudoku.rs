@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 use std::collections::HashSet;
 
@@ -52,7 +52,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::Solution;
+    use super::Solution;
 
     #[test]
     fn is_valid_sudoku() {

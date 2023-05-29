@@ -1,4 +1,4 @@
-use super::Solution;
+struct Solution;
 
 use std::collections::HashSet;
 
