@@ -5,13 +5,15 @@ impl Solution {
         let len = numbers.len();
         for i in 0..len - 1 {
             for j in i + 1..len {
-                if numbers[i] + numbers[j] == target {
-                    return vec![(i + 1) as i32, (j + 1) as i32];
+                match numbers[i] + numbers[j] {
+                    x if x == target => return vec![(i + 1) as i32, (j + 1) as i32],
+                    x if x > target => break,
+                    _ => (),
                 }
             }
         }
 
-        vec![]
+        unreachable!()
     }
 }
 
