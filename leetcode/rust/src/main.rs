@@ -8,6 +8,7 @@ mod largest_rectangle_in_histogram;
 mod longest_consecutive_sequence;
 mod min_stack;
 mod product_of_array_except_self;
+mod three_sum;
 mod top_k_frequent_elements;
 mod two_sum;
 mod two_sum_ii_input_array_is_sorted;
