@@ -11,6 +11,7 @@ mod min_stack;
 mod product_of_array_except_self;
 mod three_sum;
 mod top_k_frequent_elements;
+mod trapping_rain_water;
 mod two_sum;
 mod two_sum_ii_input_array_is_sorted;
 mod valid_anagram;
