@@ -1,3 +1,4 @@
+mod binary_search;
 mod car_fleet;
 mod container_with_most_water;
 mod contains_duplicate;
