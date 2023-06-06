@@ -20,6 +20,7 @@ impl Solution {
         min
     }
 
+    #[inline(always)]
     fn calc_hour(piles: &Vec<i32>, k: i32) -> i32 {
         let mut sum = 0;
         for &p in piles {
