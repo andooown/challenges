@@ -40,10 +40,9 @@ impl Solution {
     }
 
     fn calc_hour(piles: &Vec<i32>, k: i32) -> u64 {
-        piles.iter().fold(0u64, |sum, p| {
-            let (q, r) = (p / k, p % k);
-            return sum + q as u64 + if r > 0 { 1 } else { 0 };
-        })
+        piles
+            .iter()
+            .fold(0u64, |sum, p| sum + ((p + k - 1) / k) as u64)
     }
 }
 
