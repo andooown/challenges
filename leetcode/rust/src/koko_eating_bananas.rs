@@ -11,7 +11,7 @@ impl Solution {
         let (mut min, mut max) = (1, piles[len - 1]);
         while min < max {
             let k = (min + max) / 2;
-            match Self::calc_hour(&piles, k).cmp(&(h as u64)) {
+            match Self::calc_hour(&piles, k).cmp(&h) {
                 Ordering::Greater => min = k + 1,
                 _ => max = k,
             };
@@ -20,10 +20,13 @@ impl Solution {
         min
     }
 
-    fn calc_hour(piles: &Vec<i32>, k: i32) -> u64 {
-        piles
-            .iter()
-            .fold(0u64, |sum, p| sum + ((p + k - 1) / k) as u64)
+    fn calc_hour(piles: &Vec<i32>, k: i32) -> i32 {
+        let mut sum = 0;
+        for &p in piles {
+            sum += (p + k - 1) / k;
+        }
+
+        sum
     }
 }
 
