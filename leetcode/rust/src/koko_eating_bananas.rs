@@ -1,6 +1,6 @@
 struct Solution;
 
-use std::cmp;
+use std::cmp::Ordering;
 
 impl Solution {
     pub fn min_eating_speed(piles: Vec<i32>, h: i32) -> i32 {
@@ -9,31 +9,12 @@ impl Solution {
 
         let len = piles.len();
         let (mut min, mut max) = (1, piles[len - 1]);
-        while min <= max {
+        while min < max {
             let k = (min + max) / 2;
-            match Self::calc_hour(&piles, k) {
-                x if x == h as u64 => return Self::search_min_speed(&piles, min, k, h),
-                x if x < h as u64 => max = k - 1,
-                _ => min = k + 1,
+            match Self::calc_hour(&piles, k).cmp(&(h as u64)) {
+                Ordering::Greater => min = k + 1,
+                _ => max = k,
             };
-        }
-
-        max = cmp::max(max, 1);
-        if Self::calc_hour(&piles, max) == h as u64 {
-            max
-        } else {
-            min
-        }
-    }
-
-    fn search_min_speed(piles: &Vec<i32>, min: i32, max: i32, h: i32) -> i32 {
-        let mut last_k = max;
-        for k in (min..max).rev() {
-            if Self::calc_hour(piles, k) != h as u64 {
-                return last_k;
-            }
-
-            last_k = k
         }
 
         min
