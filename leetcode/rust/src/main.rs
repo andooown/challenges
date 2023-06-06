@@ -13,6 +13,7 @@ mod longest_consecutive_sequence;
 mod min_stack;
 mod product_of_array_except_self;
 mod search_a_2d_matrix;
+mod search_in_rotated_sorted_array;
 mod three_sum;
 mod top_k_frequent_elements;
 mod trapping_rain_water;
