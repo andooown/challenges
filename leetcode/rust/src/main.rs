@@ -4,6 +4,7 @@ mod container_with_most_water;
 mod contains_duplicate;
 mod daily_temperatures;
 mod evaluate_reverse_polish_notation;
+mod find_minimum_in_rotated_sorted_array;
 mod generate_parentheses;
 mod group_anagrams;
 mod koko_eating_bananas;
