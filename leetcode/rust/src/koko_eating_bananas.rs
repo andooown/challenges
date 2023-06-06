@@ -4,11 +4,7 @@ use std::cmp::Ordering;
 
 impl Solution {
     pub fn min_eating_speed(piles: Vec<i32>, h: i32) -> i32 {
-        let mut piles = piles;
-        piles.sort_unstable();
-
-        let len = piles.len();
-        let (mut min, mut max) = (1, piles[len - 1]);
+        let (mut min, mut max) = (1, *piles.iter().max().unwrap());
         while min < max {
             let k = (min + max) / 2;
             match Self::calc_hour(&piles, k).cmp(&h) {
