@@ -15,6 +15,7 @@ mod product_of_array_except_self;
 mod search_a_2d_matrix;
 mod search_in_rotated_sorted_array;
 mod three_sum;
+mod time_based_key_value_store;
 mod top_k_frequent_elements;
 mod trapping_rain_water;
 mod two_sum;
