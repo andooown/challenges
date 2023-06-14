@@ -10,6 +10,7 @@ mod group_anagrams;
 mod koko_eating_bananas;
 mod largest_rectangle_in_histogram;
 mod longest_consecutive_sequence;
+mod median_of_two_sorted_arrays;
 mod min_stack;
 mod product_of_array_except_self;
 mod search_a_2d_matrix;
